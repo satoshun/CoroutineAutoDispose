@@ -1,4 +1,4 @@
-package com.github.satoshun.coroutine.autodispose
+package com.github.satoshun.coroutine.autodispose.view
 
 import android.view.View
 import com.github.satoshun.coroutine.autodispose.lifecycle.ExperimentalApi
@@ -20,7 +20,7 @@ private class ViewListener(
     view.removeOnAttachStateChangeListener(this)
     job.cancel()
   }
-  
+
   override fun onViewAttachedToWindow(v: View) {
     // do nothing
   }

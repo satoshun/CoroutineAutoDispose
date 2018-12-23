@@ -1,4 +1,4 @@
-package com.github.satoshun.coroutine.autodispose
+package com.github.satoshun.coroutine.autodispose.view
 
 import android.view.View
 import android.view.ViewGroup
