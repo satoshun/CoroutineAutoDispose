@@ -8,7 +8,11 @@ import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.Job
 
 fun LifecycleOwner.addJob(job: Job) {
-  val state = lifecycle.currentState
+  lifecycle.addJob(job)
+}
+
+fun Lifecycle.addJob(job: Job) {
+  val state = this.currentState
   val event = when (state) {
     Lifecycle.State.DESTROYED -> Lifecycle.Event.ON_DESTROY
     Lifecycle.State.INITIALIZED -> Lifecycle.Event.ON_DESTROY
@@ -16,8 +20,8 @@ fun LifecycleOwner.addJob(job: Job) {
     Lifecycle.State.STARTED -> Lifecycle.Event.ON_STOP
     Lifecycle.State.RESUMED -> Lifecycle.Event.ON_PAUSE
   }
-  val observer = AnyObserver(job, event, lifecycle)
-  lifecycle.addObserver(observer)
+  val observer = AnyObserver(job, event, this)
+  this.addObserver(observer)
   job.invokeOnCompletion(observer)
 }
 
