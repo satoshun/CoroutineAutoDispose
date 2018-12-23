@@ -13,5 +13,5 @@ dependencies {
   implementation Libs.kotlin
 
   implementation Libs.coroutine
-  implementation Libs.lifecycle_extensions
+  implementation Libs.lifecycle
 }

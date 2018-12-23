@@ -31,6 +31,7 @@ object Libs {
 
   const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
   const val livedata = "androidx.lifecycle:lifecycle-livedata:2.0.0"
+  const val lifecycle = "androidx.lifecycle:lifecycle-common:2.0.0"
   const val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:2.0.0"
   const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:2.0.0"
 
