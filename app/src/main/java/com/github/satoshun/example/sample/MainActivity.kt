@@ -23,7 +23,6 @@ class MainActivity : BaseActivity() {
     childJob.invokeOnCompletion {
       Log.d("hoge", "completed")
     }
-//    addJob(childJob)
   }
 
   override fun onResume() {
@@ -38,7 +37,5 @@ class MainActivity : BaseActivity() {
     childJob.invokeOnCompletion {
       Log.d("hoge2", "completed")
     }
-
-//    addJob(childJob)
   }
 }

@@ -26,18 +26,18 @@ class LifecycleOwnerJobTest {
     scenario.onActivity {
       it.addJob(job)
     }
-    assertThat(job.isCancelled).isFalse()
+    JobSubject.assertThat(job).isNotCanceled()
 
     scenario.moveToState(Lifecycle.State.RESUMED)
-    assertThat(job.isCancelled).isFalse()
+    JobSubject.assertThat(job).isNotCanceled()
 
     scenario.onActivity {
       (it.lifecycle as LifecycleRegistry).handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
-    assertThat(job.isCancelled).isFalse()
+    JobSubject.assertThat(job).isNotCanceled()
 
     scenario.moveToState(Lifecycle.State.DESTROYED)
-    assertThat(job.isCancelled).isTrue()
+    JobSubject.assertThat(job).isCanceled()
   }
 
   @Test
@@ -50,12 +50,12 @@ class LifecycleOwnerJobTest {
     scenario.onActivity {
       it.addJob(job)
     }
-    assertThat(job.isCancelled).isFalse()
+    JobSubject.assertThat(job).isNotCanceled()
 
     scenario.onActivity {
       (it.lifecycle as LifecycleRegistry).handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
-    assertThat(job.isCancelled).isTrue()
+    JobSubject.assertThat(job).isCanceled()
   }
 
   @Test

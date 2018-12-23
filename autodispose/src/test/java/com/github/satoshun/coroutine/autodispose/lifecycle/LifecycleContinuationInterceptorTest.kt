@@ -5,7 +5,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleRegistry
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -29,15 +28,15 @@ class LifecycleContinuationInterceptorTest {
         delay(10000)
       }
     }
-    assertThat(job!!.isCancelled).isFalse()
+    JobSubject.assertThat(job).isNotCanceled()
 
     scenario.onActivity {
       (it.lifecycle as LifecycleRegistry).handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
-    assertThat(job!!.isCancelled).isFalse()
+    JobSubject.assertThat(job).isNotCanceled()
 
     scenario.moveToState(Lifecycle.State.DESTROYED)
-    assertThat(job!!.isCancelled).isTrue()
+    JobSubject.assertThat(job).isCanceled()
   }
 
   @Test
@@ -51,12 +50,12 @@ class LifecycleContinuationInterceptorTest {
         delay(10000)
       }
     }
-    assertThat(job!!.isCancelled).isFalse()
+    JobSubject.assertThat(job).isNotCanceled()
     scenario.onActivity {
       (it.lifecycle as LifecycleRegistry).handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
 
-    assertThat(job!!.isCancelled).isTrue()
+    JobSubject.assertThat(job).isCanceled()
   }
 
   @Test
@@ -74,26 +73,28 @@ class LifecycleContinuationInterceptorTest {
         delay(10000)
       }
     }
-    assertThat(parentJob!!.isCancelled).isFalse()
-    assertThat(nestedJob1!!.isCancelled).isFalse()
-    assertThat(nestedJob2!!.isCancelled).isFalse()
+
+
+    JobSubject.assertThat(parentJob).isNotCanceled()
+    JobSubject.assertThat(nestedJob1).isNotCanceled()
+    JobSubject.assertThat(nestedJob2).isNotCanceled()
 
     scenario.onActivity {
       (it.lifecycle as LifecycleRegistry).handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
-    assertThat(parentJob!!.isCancelled).isFalse()
-    assertThat(nestedJob1!!.isCancelled).isFalse()
-    assertThat(nestedJob2!!.isCancelled).isFalse()
+    JobSubject.assertThat(parentJob).isNotCanceled()
+    JobSubject.assertThat(nestedJob1).isNotCanceled()
+    JobSubject.assertThat(nestedJob2).isNotCanceled()
 
     nestedJob2!!.cancel()
-    assertThat(parentJob!!.isCancelled).isFalse()
-    assertThat(nestedJob1!!.isCancelled).isFalse()
-    assertThat(nestedJob2!!.isCancelled).isTrue()
+    JobSubject.assertThat(parentJob).isNotCanceled()
+    JobSubject.assertThat(nestedJob1).isNotCanceled()
+    JobSubject.assertThat(nestedJob2).isCanceled()
 
     scenario.moveToState(Lifecycle.State.DESTROYED)
-    assertThat(parentJob!!.isCancelled).isTrue()
-    assertThat(nestedJob1!!.isCancelled).isTrue()
-    assertThat(nestedJob2!!.isCancelled).isTrue()
+    JobSubject.assertThat(parentJob).isCanceled()
+    JobSubject.assertThat(nestedJob1).isCanceled()
+    JobSubject.assertThat(nestedJob2).isCanceled()
   }
 }
 
