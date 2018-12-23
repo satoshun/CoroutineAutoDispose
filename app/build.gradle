@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion Vers.compile_sdk
 
   defaultConfig {
-    applicationId "com.github.satoshun.example.sample"
+    applicationId "com.github.satoshun.coroutine.autodispose"
 
     minSdkVersion Vers.min_sdk
     targetSdkVersion Vers.target_sdk
@@ -35,10 +34,6 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
-
-  dataBinding {
-    enabled = true
-  }
 }
 
 dependencies {
@@ -47,12 +42,10 @@ dependencies {
   implementation Libs.kotlin
   implementation Libs.appcompat
   implementation Libs.constraintlayout
-  implementation Libs.recyclerview
   implementation Libs.ktx
 
   implementation Libs.coroutine
   implementation Libs.ui_coroutine
 
   implementation Libs.activityx
-  implementation Libs.fragmentx
 }

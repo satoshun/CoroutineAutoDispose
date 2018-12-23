@@ -1,9 +1,7 @@
-package com.github.satoshun.example.sample
+package com.github.satoshun.coroutine.autodispose.sample
 
 import android.os.Bundle
 import android.util.Log
-import androidx.databinding.DataBindingUtil
-import com.github.satoshun.example.sample.databinding.MainActBinding
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -11,7 +9,7 @@ import kotlinx.coroutines.launch
 class MainActivity : BaseActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val binding = DataBindingUtil.setContentView<MainActBinding>(this, R.layout.main_act)
+    setContentView(R.layout.main_act)
 
     val childJob = launch {
       Log.d("hoge", coroutineContext[Job].toString())

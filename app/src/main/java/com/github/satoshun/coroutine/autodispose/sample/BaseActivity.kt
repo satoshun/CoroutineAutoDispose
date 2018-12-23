@@ -1,4 +1,4 @@
-package com.github.satoshun.example.sample
+package com.github.satoshun.coroutine.autodispose.sample
 
 import androidx.appcompat.app.AppCompatActivity
 import com.github.satoshun.coroutine.autodispose.lifecycle.LifecycleContinuationInterceptor
