@@ -42,6 +42,8 @@ android {
 }
 
 dependencies {
+  implementation project(':autodispose')
+
   implementation Libs.kotlin
   implementation Libs.appcompat
   implementation Libs.constraintlayout
