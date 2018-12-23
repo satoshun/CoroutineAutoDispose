@@ -1,31 +1,32 @@
-# Coroutine AutoDispose Example (in progress)
+# Coroutine AutoDispose with Android Lifecycle
 
-Goal: Job work with Android lifecycle.
+## How to use it?
 
-## first approach: use LifecycleObserver
+register Job manually to Lifecycle
 
 ```kotlin
-fun LifecycleOwner.addJob(job: Job) {
-  val state = lifecycle.currentState
-  when (state) {
-    Lifecycle.State.DESTROYED -> TODO()
-    Lifecycle.State.INITIALIZED -> lifecycle.addObserver(AnyObserver(job, Lifecycle.Event.ON_DESTROY))
-    Lifecycle.State.CREATED -> lifecycle.addObserver(AnyObserver(job, Lifecycle.Event.ON_DESTROY))
-    Lifecycle.State.STARTED -> lifecycle.addObserver(AnyObserver(job, Lifecycle.Event.ON_STOP))
-    Lifecycle.State.RESUMED -> lifecycle.addObserver(AnyObserver(job, Lifecycle.Event.ON_PAUSE))
-  }
+val job = launch { ... }
+
+lifecycle.addJob(job) // register Job
+```
+
+or plus LifecycleContinuationInterceptor your CoroutineContext.
+
+```kotlin
+abstract class BaseActivity : AppCompatActivity(),
+  CoroutineScope {
+
+  private val job = Job()
+  override val coroutineContext get() = job + Dispatchers.Main + LifecycleContinuationInterceptor(this)
 }
 
-private class AnyObserver(
-  private val job: Job,
-  private val event: Lifecycle.Event
-) : LifecycleObserver {
-  @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
-  fun onEvent(owner: LifecycleOwner, event: Lifecycle.Event) {
-    if (event == this.event) {
-      owner.lifecycle.removeObserver(this)
-      job.cancel()
+class MainActivity : BaseActivity() {
+    fun test() {
+        launch { ... } // automatically dispose that corresponds lifecycle state
     }
-  }
 }
 ```
+
+## Install
+
+not released yet

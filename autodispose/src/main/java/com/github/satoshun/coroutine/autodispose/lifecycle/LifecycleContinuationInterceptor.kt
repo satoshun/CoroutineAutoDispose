@@ -1,5 +1,6 @@
 package com.github.satoshun.coroutine.autodispose.lifecycle
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.Job
 import kotlin.coroutines.Continuation
@@ -8,10 +9,14 @@ import kotlin.coroutines.CoroutineContext
 
 @Suppress("FunctionName")
 fun LifecycleContinuationInterceptor(lifecycleOwner: LifecycleOwner): ContinuationInterceptor =
-  LifecycleContinuationInterceptorImpl(lifecycleOwner)
+  LifecycleContinuationInterceptorImpl(lifecycleOwner.lifecycle)
+
+@Suppress("FunctionName")
+fun LifecycleContinuationInterceptor(lifecycle: Lifecycle): ContinuationInterceptor =
+  LifecycleContinuationInterceptorImpl(lifecycle)
 
 internal class LifecycleContinuationInterceptorImpl(
-  private val lifecycleOwner: LifecycleOwner
+  private val lifecycle: Lifecycle
 ) : ContinuationInterceptor {
   override val key: CoroutineContext.Key<*>
     get() = ContinuationInterceptor
@@ -19,7 +24,7 @@ internal class LifecycleContinuationInterceptorImpl(
   override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> {
     val job = continuation.context[Job]
     if (job != null) {
-      lifecycleOwner.addJob(job)
+      lifecycle.addJob(job)
     }
     return continuation
   }

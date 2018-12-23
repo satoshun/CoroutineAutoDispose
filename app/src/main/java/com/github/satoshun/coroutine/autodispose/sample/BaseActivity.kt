@@ -5,13 +5,12 @@ import com.github.satoshun.coroutine.autodispose.lifecycle.LifecycleContinuation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlin.coroutines.CoroutineContext
 
 abstract class BaseActivity : AppCompatActivity(),
   CoroutineScope {
 
   private val job = Job()
-  override val coroutineContext: CoroutineContext get() = job + Dispatchers.Main + LifecycleContinuationInterceptor(this)
+  override val coroutineContext get() = job + Dispatchers.Main + LifecycleContinuationInterceptor(this)
 
   override fun onDestroy() {
     super.onDestroy()
