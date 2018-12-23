@@ -40,10 +40,29 @@ class ViewContinuationInterceptorTest {
     }
     JobSubject.assertThat(job).isCanceled()
   }
+
+  @Test
+  fun viewContinuationInterceptor_parentJob_cancel() {
+    val scenario = ActivityScenario.launch(ComponentActivity::class.java)
+
+    var job: Job? = null
+    var view: TestView? = null
+    scenario.moveToState(Lifecycle.State.CREATED)
+    scenario.onActivity {
+      view = TestView(it)
+      it.setContentView(view)
+
+      job = view!!.launch { delay(100000) }
+    }
+    JobSubject.assertThat(job).isNotCanceled()
+
+    view!!.job.cancel()
+    JobSubject.assertThat(job).isCanceled()
+  }
 }
 
 class TestView(context: Context) : View(context), CoroutineScope {
-  private val job = Job()
+  val job = Job()
   override val coroutineContext: CoroutineContext
     get() = job + Dispatchers.Main + ViewContinuationInterceptor(this)
 }
