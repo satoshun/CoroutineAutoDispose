@@ -14,4 +14,13 @@ dependencies {
 
   implementation Libs.coroutine
   implementation Libs.lifecycle
+
+  testImplementation Libs.junit
+  testImplementation Libs.truth
+  testImplementation Libs.test_rules
+  testImplementation Libs.test_runner
+  testImplementation Libs.test_core
+  testImplementation Libs.test_junit_rules
+  testImplementation Libs.robolectric
+  testImplementation Libs.activityx
 }
