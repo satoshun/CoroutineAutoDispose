@@ -7,10 +7,12 @@ import androidx.lifecycle.OnLifecycleEvent
 import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.Job
 
+@ExperimentalApi(message = "There is a possibility that it will change")
 fun LifecycleOwner.addJob(job: Job) {
   lifecycle.addJob(job)
 }
 
+@ExperimentalApi(message = "There is a possibility that it will change")
 fun Lifecycle.addJob(job: Job) {
   val state = this.currentState
   val event = when (state) {
