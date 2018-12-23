@@ -22,12 +22,12 @@ fun Lifecycle.addJob(job: Job) {
     Lifecycle.State.STARTED -> Lifecycle.Event.ON_STOP
     Lifecycle.State.RESUMED -> Lifecycle.Event.ON_PAUSE
   }
-  val observer = AnyObserver(job, event, this)
+  val observer = LifecycleJobObserver(job, event, this)
   this.addObserver(observer)
   job.invokeOnCompletion(observer)
 }
 
-private class AnyObserver(
+private class LifecycleJobObserver(
   private val job: Job,
   private val event: Lifecycle.Event,
   private val lifecycle: Lifecycle
