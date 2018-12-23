@@ -2,6 +2,7 @@ package com.github.satoshun.coroutine.autodispose.sample
 
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
 import androidx.fragment.app.commit
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -24,6 +25,8 @@ class MainActivity : BaseActivity() {
     supportFragmentManager.commit {
       add(R.id.frame, MainFragment())
     }
+
+    findViewById<ViewGroup>(R.id.root).addView(MainView(this))
   }
 
   override fun onResume() {
