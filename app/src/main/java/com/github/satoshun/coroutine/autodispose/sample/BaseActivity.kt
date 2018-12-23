@@ -11,9 +11,7 @@ abstract class BaseActivity : AppCompatActivity(),
   CoroutineScope {
 
   private val job = Job()
-  override val coroutineContext: CoroutineContext get() = job + Dispatchers.Main + LifecycleContinuationInterceptor(
-    this
-  )
+  override val coroutineContext: CoroutineContext get() = job + Dispatchers.Main + LifecycleContinuationInterceptor(this)
 
   override fun onDestroy() {
     super.onDestroy()
