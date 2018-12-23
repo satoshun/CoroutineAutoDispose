@@ -10,7 +10,11 @@ import kotlin.coroutines.Continuation
 import kotlin.coroutines.ContinuationInterceptor
 import kotlin.coroutines.CoroutineContext
 
-class LifecycleContinuationInterceptor(
+@Suppress("FunctionName")
+fun LifecycleContinuationInterceptor(lifecycleOwner: LifecycleOwner): ContinuationInterceptor =
+  LifecycleContinuationInterceptorImpl(lifecycleOwner)
+
+internal class LifecycleContinuationInterceptorImpl(
   private val lifecycleOwner: LifecycleOwner
 ) : ContinuationInterceptor {
   override val key: CoroutineContext.Key<*>

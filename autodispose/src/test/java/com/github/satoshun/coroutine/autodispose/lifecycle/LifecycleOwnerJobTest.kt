@@ -31,6 +31,11 @@ class LifecycleOwnerJobTest {
     scenario.moveToState(Lifecycle.State.RESUMED)
     assertThat(job.isCancelled).isFalse()
 
+    scenario.onActivity {
+      (it.lifecycle as LifecycleRegistry).handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    }
+    assertThat(job.isCancelled).isFalse()
+
     scenario.moveToState(Lifecycle.State.DESTROYED)
     assertThat(job.isCancelled).isTrue()
   }
