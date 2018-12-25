@@ -38,7 +38,7 @@ android {
 
 dependencies {
   implementation project(':autodispose')
-//  implementation 'com.github.satoshun.coroutine.autodispose:autodispose:0.1.0-SNAPSHOT'
+//  implementation 'com.github.satoshun.coroutine.autodispose:autodispose:0.1.0'
 
   implementation Libs.kotlin
   implementation Libs.appcompat

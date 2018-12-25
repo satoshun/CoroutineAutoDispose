@@ -1,6 +1,7 @@
 # Coroutine AutoDispose
 
 [![CircleCI](https://circleci.com/gh/satoshun/CoroutineAutoDispose.svg?style=svg)](https://circleci.com/gh/satoshun/CoroutineAutoDispose)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.satoshun.coroutine.autodispose/autodispose/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.satoshun.coroutine.autodispose/autodispose)
 
 Coroutine AutoDispose is an Kotlin Coroutine library for automatically disposal.
 
