@@ -17,10 +17,11 @@ class MainFragment : BaseFragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
+    // auto release when onDestroyView
     val job = launch {
       while (true) {
         delay(1000)
-        Log.d("fragment", "onViewCreated")
+        Log.d("fragment", "start onViewCreated")
       }
     }
     job.invokeOnCompletion {
@@ -30,11 +31,15 @@ class MainFragment : BaseFragment() {
 
   override fun onResume() {
     super.onResume()
-    launch {
+    // auto release when onPause
+    val job = launch {
       while (true) {
         delay(1000)
-        Log.d("fragment", "onResume Job completed")
+        Log.d("fragment", "start onResume")
       }
+    }
+    job.invokeOnCompletion {
+      Log.d("fragment", "onResume Job completed")
     }
   }
 }

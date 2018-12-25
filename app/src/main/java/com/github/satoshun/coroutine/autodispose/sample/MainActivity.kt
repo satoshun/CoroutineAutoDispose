@@ -12,6 +12,7 @@ class MainActivity : BaseActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.main_act)
 
+    // auto dispose when onDestroy
     val childJob = launch {
       while (true) {
         delay(1200)
@@ -31,6 +32,7 @@ class MainActivity : BaseActivity() {
 
   override fun onResume() {
     super.onResume()
+    // auto dispose when onPause
     val childJob = launch {
       while (true) {
         delay(3000)
