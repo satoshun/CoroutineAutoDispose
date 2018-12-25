@@ -7,13 +7,11 @@ import androidx.lifecycle.OnLifecycleEvent
 import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.Job
 
-@ExperimentalApi(message = "There is a possibility that it will change")
-fun LifecycleOwner.addJob(job: Job) {
-  lifecycle.addJob(job)
+fun LifecycleOwner.autoDispose(job: Job) {
+  lifecycle.autoDispose(job)
 }
 
-@ExperimentalApi(message = "There is a possibility that it will change")
-fun Lifecycle.addJob(job: Job) {
+fun Lifecycle.autoDispose(job: Job) {
   val state = this.currentState
   val event = when (state) {
     Lifecycle.State.DESTROYED -> Lifecycle.Event.ON_DESTROY
@@ -29,12 +27,12 @@ fun Lifecycle.addJob(job: Job) {
 
 private class LifecycleJobObserver(
   private val job: Job,
-  private val event: Lifecycle.Event,
+  private val target: Lifecycle.Event,
   private val lifecycle: Lifecycle
 ) : LifecycleObserver, CompletionHandler {
   @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
   fun onEvent(owner: LifecycleOwner, event: Lifecycle.Event) {
-    if (event == this.event) {
+    if (event == this.target) {
       owner.lifecycle.removeObserver(this)
       job.cancel()
     }

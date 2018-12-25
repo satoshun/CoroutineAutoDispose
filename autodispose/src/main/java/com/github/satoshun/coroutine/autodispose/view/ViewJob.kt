@@ -1,12 +1,10 @@
 package com.github.satoshun.coroutine.autodispose.view
 
 import android.view.View
-import com.github.satoshun.coroutine.autodispose.lifecycle.ExperimentalApi
 import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.Job
 
-@ExperimentalApi(message = "There is a possibility that it will change")
-fun View.addJob(job: Job) {
+fun View.autoDispose(job: Job) {
   val listener = ViewListener(this, job)
   this.addOnAttachStateChangeListener(listener)
 }

@@ -24,7 +24,7 @@ class LifecycleOwnerJobTest {
 
     scenario.moveToState(Lifecycle.State.CREATED)
     scenario.onActivity {
-      it.addJob(job)
+      it.autoDispose(job)
     }
     JobSubject.assertThat(job).isNotCanceled()
 
@@ -48,7 +48,7 @@ class LifecycleOwnerJobTest {
 
     scenario.moveToState(Lifecycle.State.RESUMED)
     scenario.onActivity {
-      it.addJob(job)
+      it.autoDispose(job)
     }
     JobSubject.assertThat(job).isNotCanceled()
 
@@ -65,7 +65,7 @@ class LifecycleOwnerJobTest {
 
     val scenario = ActivityScenario.launch(ComponentActivity::class.java)
     scenario.moveToState(Lifecycle.State.CREATED)
-    scenario.onActivity { it.addJob(job) }
+    scenario.onActivity { it.autoDispose(job) }
 
     scenario.onActivity {
       assertThat((it.lifecycle as LifecycleRegistry).observerCount)

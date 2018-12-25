@@ -27,7 +27,7 @@ class ViewJobTest {
       view = TextView(it)
       it.setContentView(view)
 
-      view!!.addJob(job)
+      view!!.autoDispose(job)
     }
     JobSubject.assertThat(job).isNotCanceled()
 
@@ -49,7 +49,7 @@ class ViewJobTest {
       view = TextView(it)
       it.setContentView(view)
 
-      view!!.addJob(job)
+      view!!.autoDispose(job)
     }
     JobSubject.assertThat(job).isNotCanceled()
 

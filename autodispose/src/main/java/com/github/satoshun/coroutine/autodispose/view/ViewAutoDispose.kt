@@ -19,7 +19,7 @@ internal class ViewAutoDisposeImpl(
   override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> {
     val job = continuation.context[Job]
     if (job != null) {
-      view.addJob(job)
+      view.autoDispose(job)
     }
     return continuation
   }

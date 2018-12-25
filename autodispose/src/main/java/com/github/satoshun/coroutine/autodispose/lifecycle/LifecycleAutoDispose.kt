@@ -24,7 +24,7 @@ internal class LifecycleAutoDisposeImpl(
   override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> {
     val job = continuation.context[Job]
     if (job != null) {
-      lifecycle.addJob(job)
+      lifecycle.autoDispose(job)
     }
     return continuation
   }
