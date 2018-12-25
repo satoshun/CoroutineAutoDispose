@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.dokka-android'
 
 android {
   compileSdkVersion Vers.compile_sdk
@@ -24,3 +25,5 @@ dependencies {
   testImplementation Libs.robolectric
   testImplementation Libs.activityx
 }
+
+apply from: rootProject.file('gradle/gradle-mvn-push-kotlin.gradle')

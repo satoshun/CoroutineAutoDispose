@@ -11,6 +11,7 @@ object Libs {
   const val android_plugin = "com.android.tools.build:gradle:3.4.0-alpha09"
   const val kotlin_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Vers.kotlin}"
   const val versions_plugin = "com.github.ben-manes:gradle-versions-plugin:0.20.0"
+  const val dokka_plugin = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17"
 
   const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Vers.kotlin}"
   const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Vers.couroutine}"
