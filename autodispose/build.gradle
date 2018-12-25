@@ -11,10 +11,10 @@ android {
 }
 
 dependencies {
-  implementation Libs.kotlin
+  api Libs.kotlin
 
-  implementation Libs.coroutine
-  implementation Libs.lifecycle
+  api Libs.coroutine
+  api Libs.lifecycle
 
   testImplementation Libs.junit
   testImplementation Libs.truth
