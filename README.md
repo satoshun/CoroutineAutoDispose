@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/satoshun/CoroutineAutoDispose.svg?style=svg)](https://circleci.com/gh/satoshun/CoroutineAutoDispose)
+
 # Coroutine AutoDispose with Android Lifecycle
 
 ## How to use it?
