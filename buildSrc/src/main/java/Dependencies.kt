@@ -1,6 +1,6 @@
 object Vers {
   const val compile_sdk = 28
-  const val min_sdk = 24
+  const val min_sdk = 14
   const val target_sdk = 28
 
   const val kotlin = "1.3.11"
@@ -20,28 +20,16 @@ object Libs {
   const val ktx = "androidx.core:core-ktx:1.0.0"
 
   const val appcompat = "androidx.appcompat:appcompat:1.0.2"
-  const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0-alpha01"
   const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
-  const val cardview = "androidx.cardview:cardview:1.0.0"
 
   const val activityx = "androidx.activity:activity-ktx:1.0.0-alpha03"
   const val fragmentx = "androidx.fragment:fragment-ktx:1.1.0-alpha03"
-
-  const val material = "com.google.android.material:material:1.0.0"
-  const val coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:1.0.0"
 
   const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
   const val livedata = "androidx.lifecycle:lifecycle-livedata:2.0.0"
   const val lifecycle = "androidx.lifecycle:lifecycle-common:2.0.0"
   const val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:2.0.0"
   const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:2.0.0"
-
-  private const val vdagger = "2.19"
-  const val dagger = "com.google.dagger:dagger:$vdagger"
-  const val dagger_processor = "com.google.dagger:dagger-compiler:$vdagger"
-  const val dagger_android = "com.google.dagger:dagger-android:$vdagger"
-  const val dagger_android_processor = "com.google.dagger:dagger-android-processor:$vdagger"
-  const val dagger_android_support = "com.google.dagger:dagger-android-support:$vdagger"
 
   const val junit = "junit:junit:4.12"
   const val truth = "com.google.truth:truth:0.42"
