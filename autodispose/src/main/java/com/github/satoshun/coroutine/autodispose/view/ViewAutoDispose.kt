@@ -7,10 +7,10 @@ import kotlin.coroutines.ContinuationInterceptor
 import kotlin.coroutines.CoroutineContext
 
 @Suppress("FunctionName")
-fun ViewContinuationInterceptor(view: View): ContinuationInterceptor =
-  ViewContinuationInterceptorImpl(view)
+fun ViewAutoDispose(view: View): ContinuationInterceptor =
+  ViewAutoDisposeImpl(view)
 
-internal class ViewContinuationInterceptorImpl(
+internal class ViewAutoDisposeImpl(
   private val view: View
 ) : ContinuationInterceptor {
   override val key: CoroutineContext.Key<*>

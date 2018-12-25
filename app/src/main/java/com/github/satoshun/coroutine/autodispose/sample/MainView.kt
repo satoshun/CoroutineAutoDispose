@@ -3,7 +3,7 @@ package com.github.satoshun.coroutine.autodispose.sample
 import android.content.Context
 import android.util.Log
 import android.view.View
-import com.github.satoshun.coroutine.autodispose.view.ViewContinuationInterceptor
+import com.github.satoshun.coroutine.autodispose.view.ViewAutoDispose
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,7 +15,7 @@ class MainView(context: Context) : View(context), CoroutineScope {
   override val coroutineContext
     get() = job +
       Dispatchers.Main +
-      ViewContinuationInterceptor(this)
+      ViewAutoDispose(this)
 
   init {
     val job = launch {
