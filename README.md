@@ -67,10 +67,11 @@ class MainView(context: Context) : View(context), CoroutineScope {
 }
 ```
 
-## Install
+## Donwload
 
-not released yet
-
+```groovy
+implementation 'com.github.satoshun.coroutine.autodispose:autodispose:${version}'
+```
 
 ## etc
 
