@@ -4,6 +4,9 @@ import android.view.View
 import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.Job
 
+/**
+ * [Job] is automatically disposed and follows the attach/detach lifecycle of [View].
+ */
 fun View.autoDispose(job: Job) {
   val listener = ViewListener(this, job)
   this.addOnAttachStateChangeListener(listener)

@@ -6,11 +6,14 @@ import kotlin.coroutines.Continuation
 import kotlin.coroutines.ContinuationInterceptor
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Create a ContinuationInterceptor that follows attach/detach lifecycle of [View].
+ */
 @Suppress("FunctionName")
 fun ViewAutoDispose(view: View): ContinuationInterceptor =
   ViewAutoDisposeImpl(view)
 
-internal class ViewAutoDisposeImpl(
+private class ViewAutoDisposeImpl(
   private val view: View
 ) : ContinuationInterceptor {
   override val key: CoroutineContext.Key<*>

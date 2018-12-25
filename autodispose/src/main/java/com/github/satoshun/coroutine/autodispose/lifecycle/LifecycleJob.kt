@@ -7,10 +7,16 @@ import androidx.lifecycle.OnLifecycleEvent
 import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.Job
 
+/**
+ * [Job] is automatically disposed and follows the lifecycle of LifecycleOwner.
+ */
 fun LifecycleOwner.autoDispose(job: Job) {
   lifecycle.autoDispose(job)
 }
 
+/**
+ * [Job] is automatically disposed and follows the lifecycle.
+ */
 fun Lifecycle.autoDispose(job: Job) {
   val state = this.currentState
   val event = when (state) {

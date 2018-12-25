@@ -7,15 +7,21 @@ import kotlin.coroutines.Continuation
 import kotlin.coroutines.ContinuationInterceptor
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Create a [ContinuationInterceptor] that follows lifecycle of LifecycleOwner.
+ */
 @Suppress("FunctionName")
 fun LifecycleAutoDispose(lifecycleOwner: LifecycleOwner): ContinuationInterceptor =
-  LifecycleAutoDisposeImpl(lifecycleOwner.lifecycle)
+  LifecycleAutoDispose(lifecycleOwner.lifecycle)
 
+/**
+ * Create a [ContinuationInterceptor] that follows lifecycle.
+ */
 @Suppress("FunctionName")
 fun LifecycleAutoDispose(lifecycle: Lifecycle): ContinuationInterceptor =
   LifecycleAutoDisposeImpl(lifecycle)
 
-internal class LifecycleAutoDisposeImpl(
+private class LifecycleAutoDisposeImpl(
   private val lifecycle: Lifecycle
 ) : ContinuationInterceptor {
   override val key: CoroutineContext.Key<*>
