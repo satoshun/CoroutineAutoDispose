@@ -5,7 +5,7 @@ android {
   compileSdkVersion Vers.compile_sdk
 
   defaultConfig {
-    applicationId "com.github.satoshun.coroutine.autodispose"
+    applicationId "com.github.satoshun.coroutine.autodispose.sample"
 
     minSdkVersion Vers.min_sdk
     targetSdkVersion Vers.target_sdk
