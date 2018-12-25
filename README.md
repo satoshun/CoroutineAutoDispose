@@ -20,13 +20,20 @@ abstract class BaseActivity : AppCompatActivity(),
 
   private val job = Job()
   override val coroutineContext get() = job +
-        Dispatchers.Main +
-        LifecycleAutoDisposeInterceptor(this) // or autoDisposeInterceptor()
+      Dispatchers.Main +
+      LifecycleAutoDisposeInterceptor(this) // or autoDisposeInterceptor()
 }
 
 class MainActivity : BaseActivity() {
-  fun test() {
-    // automatically dispose that corresponds lifecycle state
+  override fun onCreate(savedInstanceState: Bundle?) {
+    // automatically dispose when onDestroy
+    launch {
+      ...
+    }
+  }
+
+  override fun onResume() {
+    // automatically dispose when onPause
     launch {
       ...
     }
