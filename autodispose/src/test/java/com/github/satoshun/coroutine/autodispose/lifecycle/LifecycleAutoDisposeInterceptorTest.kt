@@ -16,9 +16,9 @@ import org.junit.runner.RunWith
 import kotlin.coroutines.CoroutineContext
 
 @RunWith(AndroidJUnit4::class)
-class LifecycleAutoDisposeTest {
+class LifecycleAutoDisposeInterceptorTest {
   @Test
-  fun lifecycleAutoDispose_onCreated() {
+  fun lifecycleAutoDisposeInterceptor_onCreated() {
     val scenario = ActivityScenario.launch(TestActivity::class.java)
 
     scenario.moveToState(Lifecycle.State.CREATED)
@@ -40,7 +40,7 @@ class LifecycleAutoDisposeTest {
   }
 
   @Test
-  fun lifecycleAutoDispose_onResumed() {
+  fun lifecycleAutoDisposeInterceptor_onResumed() {
     val scenario = ActivityScenario.launch(TestActivity::class.java)
 
     scenario.moveToState(Lifecycle.State.RESUMED)
@@ -59,7 +59,7 @@ class LifecycleAutoDisposeTest {
   }
 
   @Test
-  fun lifecycleAutoDispose_nested() {
+  fun lifecycleAutoDisposeInterceptor_nested() {
     val scenario = ActivityScenario.launch(TestActivity::class.java)
 
     scenario.moveToState(Lifecycle.State.CREATED)
@@ -101,5 +101,5 @@ class LifecycleAutoDisposeTest {
 class TestActivity : ComponentActivity(), CoroutineScope {
   private val job = Job()
   override val coroutineContext: CoroutineContext
-    get() = job + Dispatchers.Main + LifecycleAutoDispose(this)
+    get() = job + Dispatchers.Main + LifecycleAutoDisposeInterceptor(this)
 }

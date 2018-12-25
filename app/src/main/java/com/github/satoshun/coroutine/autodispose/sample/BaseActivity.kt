@@ -1,7 +1,7 @@
 package com.github.satoshun.coroutine.autodispose.sample
 
 import androidx.appcompat.app.AppCompatActivity
-import com.github.satoshun.coroutine.autodispose.lifecycle.LifecycleAutoDispose
+import com.github.satoshun.coroutine.autodispose.lifecycle.autoDisposeInterceptor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -13,5 +13,5 @@ abstract class BaseActivity : AppCompatActivity(),
   override val coroutineContext
     get() = job +
       Dispatchers.Main +
-      LifecycleAutoDispose(this)
+      autoDisposeInterceptor()
 }

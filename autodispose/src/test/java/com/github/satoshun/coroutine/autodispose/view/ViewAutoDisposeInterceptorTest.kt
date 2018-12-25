@@ -18,9 +18,9 @@ import org.junit.runner.RunWith
 import kotlin.coroutines.CoroutineContext
 
 @RunWith(AndroidJUnit4::class)
-class ViewAutoDisposeTest {
+class ViewAutoDisposeInterceptorTest {
   @Test
-  fun viewAutoDispose() {
+  fun viewAutoDisposeInterceptor() {
     val scenario = ActivityScenario.launch(ComponentActivity::class.java)
 
     var job: Job? = null
@@ -42,7 +42,7 @@ class ViewAutoDisposeTest {
   }
 
   @Test
-  fun viewAutoDispose_parentJob_cancel() {
+  fun viewAutoDisposeInterceptor_parentJob_cancel() {
     val scenario = ActivityScenario.launch(ComponentActivity::class.java)
 
     var job: Job? = null
@@ -64,5 +64,5 @@ class ViewAutoDisposeTest {
 class TestView(context: Context) : View(context), CoroutineScope {
   val job = Job()
   override val coroutineContext: CoroutineContext
-    get() = job + Dispatchers.Main + ViewAutoDispose(this)
+    get() = job + Dispatchers.Main + ViewAutoDisposeInterceptor(this)
 }
