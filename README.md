@@ -21,9 +21,7 @@ It create a CoroutineInterceptor for automatically disposal with AAC lifecycle e
 abstract class BaseActivity : AppCompatActivity(),
   CoroutineScope {
 
-  private val job = Job()
-  override val coroutineContext get() = job +
-      Dispatchers.Main +
+  override val coroutineContext get() = Dispatchers.Main +
       LifecycleAutoDisposeInterceptor(this) // or autoDisposeInterceptor()
 }
 
@@ -60,10 +58,8 @@ It create a CoroutineInterceptor for automatically disposal with View attach/det
 
 ```kotlin
 class MainView(context: Context) : View(context), CoroutineScope {
-  private val job = Job()
   override val coroutineContext
-    get() = job +
-      Dispatchers.Main +
+    get() = Dispatchers.Main +
       ViewAutoDisposeInterceptor(this) // or autoDisposeInterceptor()
   ...
 }
