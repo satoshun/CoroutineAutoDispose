@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'jacoco-android'
 
 android {
   compileSdkVersion Vers.compile_sdk

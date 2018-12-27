@@ -8,6 +8,7 @@ buildscript {
     classpath Libs.android_plugin
     classpath Libs.kotlin_plugin
     classpath Libs.dokka_plugin
+    classpath Libs.jacoco_plugin
   }
 }
 
