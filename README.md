@@ -1,7 +1,6 @@
 # Coroutine AutoDispose
 
 [![CircleCI](https://circleci.com/gh/satoshun/CoroutineAutoDispose.svg?style=svg)](https://circleci.com/gh/satoshun/CoroutineAutoDispose)
-[![codecov](https://codecov.io/gh/satoshun/CoroutineAutoDispose/branch/master/graph/badge.svg)](https://codecov.io/gh/satoshun/CoroutineAutoDispose)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.satoshun.coroutine.autodispose/autodispose/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.satoshun.coroutine.autodispose/autodispose)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CoroutineAutoDispose-green.svg?style=flat)](https://android-arsenal.com/details/1/7406)
 
