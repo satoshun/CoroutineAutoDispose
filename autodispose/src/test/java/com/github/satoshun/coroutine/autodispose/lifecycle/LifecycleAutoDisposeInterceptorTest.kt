@@ -99,7 +99,6 @@ class LifecycleAutoDisposeInterceptorTest {
 }
 
 class TestActivity : ComponentActivity(), CoroutineScope {
-  private val job = Job()
   override val coroutineContext: CoroutineContext
-    get() = job + Dispatchers.Main + LifecycleAutoDisposeInterceptor(this)
+    get() = Dispatchers.Main + LifecycleAutoDisposeInterceptor(this)
 }

@@ -15,7 +15,7 @@ class MainActivity : BaseActivity() {
     // auto dispose when onDestroy
     val childJob = launch {
       while (true) {
-        delay(1200)
+        delay(1000)
         Log.d("activity", "onCreate")
       }
     }
@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
     // auto dispose when onPause
     val childJob = launch {
       while (true) {
-        delay(3000)
+        delay(1000)
         Log.d("activity", "onResume")
       }
     }

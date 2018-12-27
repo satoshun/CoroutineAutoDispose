@@ -6,21 +6,18 @@ import android.view.View
 import com.github.satoshun.coroutine.autodispose.view.autoDisposeInterceptor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainView(context: Context) : View(context), CoroutineScope {
-  private val job = Job()
   override val coroutineContext
-    get() = job +
-      Dispatchers.Main +
+    get() = Dispatchers.Main +
       autoDisposeInterceptor()
 
   init {
     val job = launch {
       while (true) {
-        delay(2000)
+        delay(1000)
         Log.d("View", "init")
       }
     }
