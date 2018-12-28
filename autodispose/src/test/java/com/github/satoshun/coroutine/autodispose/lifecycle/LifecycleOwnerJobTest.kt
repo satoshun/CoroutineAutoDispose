@@ -2,6 +2,7 @@ package com.github.satoshun.coroutine.autodispose.lifecycle
 
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleRegistry
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -56,6 +57,26 @@ class LifecycleOwnerJobTest {
       (it.lifecycle as LifecycleRegistry).handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
     JobSubject.assertThat(job).isCanceled()
+  }
+
+  @Test
+  fun addJob_onDestroyed() {
+    val job = GlobalScope.launch { delay(100000) }
+
+    val lifecycle = object : Lifecycle() {
+      override fun addObserver(observer: LifecycleObserver) {
+      }
+
+      override fun removeObserver(observer: LifecycleObserver) {
+      }
+
+      override fun getCurrentState(): State {
+        return State.DESTROYED
+      }
+    }
+
+    val result = kotlin.runCatching { lifecycle.autoDispose(job) }
+    assertThat(result.exceptionOrNull()).isInstanceOf(LifecycleFinishedException::class.java)
   }
 
   @Test
