@@ -43,13 +43,12 @@ class ViewJobTest {
     val job = GlobalScope.launch { delay(10000) }
     val scenario = ActivityScenario.launch(ComponentActivity::class.java)
 
-    var view: View? = null
     scenario.moveToState(Lifecycle.State.CREATED)
     scenario.onActivity {
-      view = TextView(it)
+      val view = TextView(it)
       it.setContentView(view)
 
-      view!!.autoDispose(job)
+      view.autoDispose(job)
     }
     JobSubject.assertThat(job).isNotCanceled()
 
