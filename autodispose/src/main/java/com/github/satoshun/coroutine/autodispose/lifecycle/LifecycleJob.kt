@@ -9,6 +9,8 @@ import kotlinx.coroutines.Job
 
 /**
  * [Job] is automatically disposed and follows the lifecycle of LifecycleOwner.
+ *
+ * @throws LifecycleFinishedException when lifecycle of LifecycleOwner is destroy
  */
 fun LifecycleOwner.autoDispose(job: Job) {
   lifecycle.autoDispose(job)
@@ -16,15 +18,17 @@ fun LifecycleOwner.autoDispose(job: Job) {
 
 /**
  * [Job] is automatically disposed and follows the lifecycle.
+ *
+ * @throws LifecycleFinishedException when lifecycle is destroy
  */
 fun Lifecycle.autoDispose(job: Job) {
   val state = this.currentState
   val event = when (state) {
-    Lifecycle.State.DESTROYED -> Lifecycle.Event.ON_DESTROY
     Lifecycle.State.INITIALIZED -> Lifecycle.Event.ON_DESTROY
     Lifecycle.State.CREATED -> Lifecycle.Event.ON_DESTROY
     Lifecycle.State.STARTED -> Lifecycle.Event.ON_STOP
     Lifecycle.State.RESUMED -> Lifecycle.Event.ON_PAUSE
+    Lifecycle.State.DESTROYED -> throw LifecycleFinishedException("finished lifecycle")
   }
   val observer = LifecycleJobObserver(job, event, this)
   this.addObserver(observer)

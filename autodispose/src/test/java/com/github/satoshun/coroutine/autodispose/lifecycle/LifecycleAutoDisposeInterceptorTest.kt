@@ -100,5 +100,5 @@ class LifecycleAutoDisposeInterceptorTest {
 
 class TestActivity : ComponentActivity(), CoroutineScope {
   override val coroutineContext: CoroutineContext
-    get() = Dispatchers.Main + LifecycleAutoDisposeInterceptor(this)
+    get() = Dispatchers.Main + autoDisposeInterceptor()
 }
