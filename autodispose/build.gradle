@@ -1,13 +1,25 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka-android'
+
 apply plugin: 'jacoco-android'
+apply from: rootProject.file('gradle/jacoco.gradle')
 
 android {
   compileSdkVersion Vers.compile_sdk
 
   defaultConfig {
     minSdkVersion Vers.min_sdk
+  }
+
+  testOptions.unitTests.all {
+    jacoco.includeNoLocationClasses = true
+  }
+
+  buildTypes {
+    debug {
+      testCoverageEnabled true
+    }
   }
 }
 
