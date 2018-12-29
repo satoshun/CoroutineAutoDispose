@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 
 abstract class BaseFragment : Fragment(),
   CoroutineScope {
+
   override val coroutineContext
-    get() = Dispatchers.Main +
-      viewLifecycleOwner.autoDisposeInterceptor()
+    get() = Dispatchers.Main + viewLifecycleOwner.autoDisposeInterceptor()
 }
