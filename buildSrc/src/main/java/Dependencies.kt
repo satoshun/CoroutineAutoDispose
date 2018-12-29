@@ -4,7 +4,7 @@ object Vers {
   const val target_sdk = 28
 
   const val kotlin = "1.3.11"
-  const val couroutine = "1.0.1"
+  const val couroutine = "1.1.0"
 }
 
 object Libs {

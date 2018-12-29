@@ -9,6 +9,5 @@ abstract class BaseActivity : AppCompatActivity(),
   CoroutineScope {
 
   override val coroutineContext
-    get() = Dispatchers.Main +
-      autoDisposeInterceptor()
+    get() = Dispatchers.Main + autoDisposeInterceptor()
 }
