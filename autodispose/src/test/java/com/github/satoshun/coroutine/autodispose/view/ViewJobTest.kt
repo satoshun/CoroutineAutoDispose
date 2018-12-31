@@ -5,21 +5,24 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
-import androidx.test.core.app.ActivityScenario
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.satoshun.coroutine.autodispose.lifecycle.JobSubject
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ViewJobTest {
+  @get:Rule val scenarioRule = ActivityScenarioRule(ComponentActivity::class.java)
+
   @Test
   fun addJob_detached() {
     val job = GlobalScope.launch { delay(10000) }
-    val scenario = ActivityScenario.launch(ComponentActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     var view: View? = null
     scenario.moveToState(Lifecycle.State.CREATED)
@@ -41,7 +44,7 @@ class ViewJobTest {
   @Test
   fun addJob_cancel() {
     val job = GlobalScope.launch { delay(10000) }
-    val scenario = ActivityScenario.launch(ComponentActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     scenario.moveToState(Lifecycle.State.CREATED)
     scenario.onActivity {

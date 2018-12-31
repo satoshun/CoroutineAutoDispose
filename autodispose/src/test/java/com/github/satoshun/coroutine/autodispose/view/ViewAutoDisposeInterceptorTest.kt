@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
-import androidx.test.core.app.ActivityScenario
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.satoshun.coroutine.autodispose.lifecycle.JobSubject
 import kotlinx.coroutines.CoroutineScope
@@ -13,15 +13,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import kotlin.coroutines.CoroutineContext
 
 @RunWith(AndroidJUnit4::class)
 class ViewAutoDisposeInterceptorTest {
+  @get:Rule val scenarioRule = ActivityScenarioRule(ComponentActivity::class.java)
+
   @Test
   fun viewAutoDisposeInterceptor() {
-    val scenario = ActivityScenario.launch(ComponentActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     var job: Job? = null
     var view: TestView? = null
@@ -43,7 +46,7 @@ class ViewAutoDisposeInterceptorTest {
 
   @Test
   fun viewAutoDisposeInterceptor_parentJob_cancel() {
-    val scenario = ActivityScenario.launch(ComponentActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     var job: Job? = null
     var view: TestView? = null

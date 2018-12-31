@@ -4,7 +4,7 @@ import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleRegistry
-import androidx.test.core.app.ActivityScenario
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.GlobalScope
@@ -12,16 +12,19 @@ import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LifecycleOwnerJobTest {
+  @get:Rule val scenarioRule = ActivityScenarioRule(ComponentActivity::class.java)
+
   @Test
   fun addJob_onCreated() {
     val job = GlobalScope.launch { delay(100000) }
 
-    val scenario = ActivityScenario.launch(ComponentActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     scenario.moveToState(Lifecycle.State.CREATED)
     scenario.onActivity {
@@ -45,7 +48,7 @@ class LifecycleOwnerJobTest {
   fun addJob_onResumed() {
     val job = GlobalScope.launch { delay(100000) }
 
-    val scenario = ActivityScenario.launch(ComponentActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     scenario.moveToState(Lifecycle.State.RESUMED)
     scenario.onActivity {
@@ -75,7 +78,7 @@ class LifecycleOwnerJobTest {
       }
     }
 
-    val result = kotlin.runCatching { lifecycle.autoDispose(job) }
+    val result = runCatching { lifecycle.autoDispose(job) }
     assertThat(result.exceptionOrNull()).isInstanceOf(LifecycleFinishedException::class.java)
   }
 
@@ -84,7 +87,7 @@ class LifecycleOwnerJobTest {
     val fixedObserverSize = 1
     val job = GlobalScope.launch { delay(100000) }
 
-    val scenario = ActivityScenario.launch(ComponentActivity::class.java)
+    val scenario = scenarioRule.scenario
     scenario.moveToState(Lifecycle.State.CREATED)
     scenario.onActivity { it.autoDispose(job) }
 

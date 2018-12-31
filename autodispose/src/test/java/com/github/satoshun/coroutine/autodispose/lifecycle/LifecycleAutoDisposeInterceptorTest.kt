@@ -3,7 +3,7 @@ package com.github.satoshun.coroutine.autodispose.lifecycle
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleRegistry
-import androidx.test.core.app.ActivityScenario
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,15 +11,18 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import kotlin.coroutines.CoroutineContext
 
 @RunWith(AndroidJUnit4::class)
 class LifecycleAutoDisposeInterceptorTest {
+  @get:Rule val scenarioRule = ActivityScenarioRule(TestActivity::class.java)
+
   @Test
   fun lifecycleAutoDisposeInterceptor_onCreated() {
-    val scenario = ActivityScenario.launch(TestActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     scenario.moveToState(Lifecycle.State.CREATED)
     var job: Job? = null
@@ -41,7 +44,7 @@ class LifecycleAutoDisposeInterceptorTest {
 
   @Test
   fun lifecycleAutoDisposeInterceptor_onResumed() {
-    val scenario = ActivityScenario.launch(TestActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     scenario.moveToState(Lifecycle.State.RESUMED)
     var job: Job? = null
@@ -60,7 +63,7 @@ class LifecycleAutoDisposeInterceptorTest {
 
   @Test
   fun lifecycleAutoDisposeInterceptor_nested() {
-    val scenario = ActivityScenario.launch(TestActivity::class.java)
+    val scenario = scenarioRule.scenario
 
     scenario.moveToState(Lifecycle.State.CREATED)
     var parentJob: Job? = null
