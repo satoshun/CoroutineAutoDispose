@@ -3,6 +3,7 @@ import static dependencies.DependenciesKt.*
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: "com.vanniktech.maven.publish"
 
 apply plugin: 'jacoco-android'
 apply from: rootProject.file('gradle/jacoco.gradle')
@@ -40,5 +41,3 @@ dependencies {
   testImplementation ROBOLECTRIC
   testImplementation ACTIVITYX
 }
-
-apply from: rootProject.file('gradle/gradle-mvn-push-kotlin.gradle')
