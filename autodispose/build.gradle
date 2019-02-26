@@ -1,15 +1,18 @@
+import static dependencies.DependenciesKt.*
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: "com.vanniktech.maven.publish"
 
 apply plugin: 'jacoco-android'
 apply from: rootProject.file('gradle/jacoco.gradle')
 
 android {
-  compileSdkVersion Vers.compile_sdk
+  compileSdkVersion COMPILE_SDK
 
   defaultConfig {
-    minSdkVersion Vers.min_sdk
+    minSdkVersion MIN_SDK
   }
 
   testOptions.unitTests.all {
@@ -24,19 +27,17 @@ android {
 }
 
 dependencies {
-  api Libs.kotlin
+  api KOTLIN
 
-  api Libs.coroutine
-  api Libs.lifecycle
+  api COROUTINE
+  api LIFECYCLE
 
-  testImplementation Libs.junit
-  testImplementation Libs.truth
-  testImplementation Libs.test_rules
-  testImplementation Libs.test_runner
-  testImplementation Libs.test_core
-  testImplementation Libs.test_junit_rules
-  testImplementation Libs.robolectric
-  testImplementation Libs.activityx
+  testImplementation JUNIT
+  testImplementation TRUTH
+  testImplementation TEST_RULES
+  testImplementation TEST_RUNNER
+  testImplementation TEST_CORE
+  testImplementation TEST_JUNIT_RULES
+  testImplementation ROBOLECTRIC
+  testImplementation ACTIVITYX
 }
-
-apply from: rootProject.file('gradle/gradle-mvn-push-kotlin.gradle')
