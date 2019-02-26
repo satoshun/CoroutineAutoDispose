@@ -8,7 +8,7 @@ object Vers {
 }
 
 object Libs {
-  const val android_plugin = "com.android.tools.build:gradle:3.2.1"
+  const val android_plugin = "com.android.tools.build:gradle:3.3.1"
   const val kotlin_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Vers.kotlin}"
   const val versions_plugin = "com.github.ben-manes:gradle-versions-plugin:0.20.0"
   const val dokka_plugin = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17"
