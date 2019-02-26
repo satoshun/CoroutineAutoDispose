@@ -1,14 +1,16 @@
+import static dependencies.DependenciesKt.*
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-  compileSdkVersion Vers.compile_sdk
+  compileSdkVersion COMPILE_SDK
 
   defaultConfig {
     applicationId "com.github.satoshun.coroutine.autodispose.sample"
 
-    minSdkVersion Vers.min_sdk
-    targetSdkVersion Vers.target_sdk
+    minSdkVersion MIN_SDK
+    targetSdkVersion TARGET_SDK
     versionCode 1
     versionName "1.0"
   }
@@ -40,14 +42,14 @@ dependencies {
   implementation project(':autodispose')
 //  implementation 'com.github.satoshun.coroutine.autodispose:autodispose:0.1.1'
 
-  implementation Libs.kotlin
-  implementation Libs.appcompat
-  implementation Libs.constraintlayout
-  implementation Libs.ktx
+  implementation KOTLIN
+  implementation APPCOMPAT
+  implementation CONSTRAINTLAYOUT
+  implementation KTX
 
-  implementation Libs.coroutine
-  implementation Libs.ui_coroutine
+  implementation COROUTINE
+  implementation UI_COROUTINE
 
-  implementation Libs.activityx
-  implementation Libs.fragmentx
+  implementation ACTIVITYX
+  implementation FRAGMENTX
 }
