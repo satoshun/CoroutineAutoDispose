@@ -84,13 +84,16 @@ class LifecycleOwnerJobTest {
 
   @Test
   fun completionHandler() {
-    val fixedObserverSize = 1
     val job = GlobalScope.launch { delay(100000) }
 
     val scenario = scenarioRule.scenario
     scenario.moveToState(Lifecycle.State.CREATED)
-    scenario.onActivity { it.autoDispose(job) }
+    var fixedObserverSize = 0
+    scenario.onActivity {
+      fixedObserverSize = (it.lifecycle as LifecycleRegistry).observerCount
+    }
 
+    scenario.onActivity { it.autoDispose(job) }
     scenario.onActivity {
       assertThat((it.lifecycle as LifecycleRegistry).observerCount)
         .isEqualTo(1 + fixedObserverSize)
