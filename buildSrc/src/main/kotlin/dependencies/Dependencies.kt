@@ -9,7 +9,7 @@ const val VKOTLIN = "1.3.31"
 const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.4.0"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
 const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.8.0"
-const val JACOCO_PLUGIN = "com.dicedmelon.gradle:jacoco-android:0.1.3"
+const val JACOCO_PLUGIN = "com.dicedmelon.gradle:jacoco-android:0.1.4"
 
 const val VCOUROUTINE = "1.1.0"
 const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:$VKOTLIN"
