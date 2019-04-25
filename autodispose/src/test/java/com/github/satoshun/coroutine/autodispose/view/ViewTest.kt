@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.satoshun.coroutine.autodispose.lifecycle.JobSubject
+import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.junit.Rule
@@ -51,6 +52,60 @@ class ViewTest {
 
       it.contentView.removeView(view)
       JobSubject.assertThat(job).isCanceled()
+    }
+  }
+
+  @Test
+  fun `multi subscribe`() {
+    scenarioRule.scenario.onActivity {
+      val view = View(it)
+      it.contentView.addView(view)
+
+      // simulate too too long task
+      val job1 = view.autoDisposeScope.launch { delay(1000000) }
+      JobSubject.assertThat(job1).isNotCanceled()
+      job1.cancel()
+      JobSubject.assertThat(job1).isCanceled()
+
+      val job2 = view.autoDisposeScope.launch { delay(1000000) }
+      JobSubject.assertThat(job2).isNotCanceled()
+      job2.cancel()
+      JobSubject.assertThat(job2).isCanceled()
+
+      // same coroutine scope
+      assertThat(view.autoDisposeScope).isSameAs(view.autoDisposeScope)
+
+      it.contentView.removeView(view)
+      JobSubject.assertThat(job1).isCanceled()
+      JobSubject.assertThat(job2).isCanceled()
+    }
+  }
+
+  @Test
+  fun `view is attach and detach`() {
+    scenarioRule.scenario.onActivity {
+      val view = View(it)
+      it.contentView.addView(view)
+
+      // simulate too too long task
+      val job1 = view.autoDisposeScope.launch { delay(1000000) }
+      JobSubject.assertThat(job1).isNotCanceled()
+
+      it.contentView.removeView(view)
+      JobSubject.assertThat(job1).isCanceled()
+
+      val job2 = view.autoDisposeScope.launch { delay(1000000) }
+      JobSubject.assertThat(job2).isNotCanceled()
+
+      it.contentView.addView(view)
+      JobSubject.assertThat(job2).isNotCanceled()
+
+      val job3 = view.autoDisposeScope.launch { delay(1000000) }
+      JobSubject.assertThat(job3).isNotCanceled()
+
+      it.contentView.removeView(view)
+      JobSubject.assertThat(job2).isCanceled()
+      JobSubject.assertThat(job3).isCanceled()
     }
   }
 }
