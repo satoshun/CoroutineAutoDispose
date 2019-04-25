@@ -4,9 +4,9 @@ const val COMPILE_SDK = 28
 const val MIN_SDK = 14
 const val TARGET_SDK = 28
 
-const val VKOTLIN = "1.3.30"
+const val VKOTLIN = "1.3.31"
 
-const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.3.2"
+const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.4.0"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
 const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.8.0"
 const val JACOCO_PLUGIN = "com.dicedmelon.gradle:jacoco-android:0.1.3"
