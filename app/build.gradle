@@ -43,13 +43,16 @@ dependencies {
 //  implementation 'com.github.satoshun.coroutine.autodispose:autodispose:0.2.0-SNAPSHOT'
 
   implementation KOTLIN
-  implementation APPCOMPAT
+
   implementation CONSTRAINTLAYOUT
+  implementation RECYCLER_VIEW
+
+  implementation APPCOMPAT
   implementation KTX
+  implementation ACTIVITYX
+  implementation FRAGMENTX
 
   implementation COROUTINE
   implementation UI_COROUTINE
 
-  implementation ACTIVITYX
-  implementation FRAGMENTX
 }

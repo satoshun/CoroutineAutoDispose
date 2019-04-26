@@ -4,12 +4,12 @@ const val COMPILE_SDK = 28
 const val MIN_SDK = 14
 const val TARGET_SDK = 28
 
-const val VKOTLIN = "1.3.30"
+const val VKOTLIN = "1.3.31"
 
-const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.3.2"
+const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.4.0"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
 const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.8.0"
-const val JACOCO_PLUGIN = "com.dicedmelon.gradle:jacoco-android:0.1.3"
+const val JACOCO_PLUGIN = "com.dicedmelon.gradle:jacoco-android:0.1.4"
 
 const val VCOUROUTINE = "1.1.0"
 const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:$VKOTLIN"
@@ -20,6 +20,7 @@ const val KTX = "androidx.core:core-ktx:1.0.0"
 
 const val APPCOMPAT = "androidx.appcompat:appcompat:1.0.2"
 const val CONSTRAINTLAYOUT = "androidx.constraintlayout:constraintlayout:2.0.0-alpha4"
+const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:1.1.0-alpha04"
 
 const val ACTIVITYX = "androidx.activity:activity-ktx:1.0.0-alpha06"
 const val FRAGMENTX = "androidx.fragment:fragment-ktx:1.1.0-alpha06"
