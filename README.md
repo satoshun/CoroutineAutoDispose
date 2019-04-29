@@ -65,11 +65,33 @@ class MainView(context: Context) : View(context), CoroutineScope {
 }
 ```
 
-## Donwload
+It can also be used from extension functions
+
+```kotlin
+val view = ...
+view.autoDisposeScope.launch {
+  ...
+}
+```
+
+### Use with RecyclerView
+
+CoroutineScope can be used from a itemView of RecyclerView.ViewHolder.
+
+```kotlin
+override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+  holder.itemView.autoDisposeScope.launch {
+    ...
+  }
+}
+```
+
+## Download
 
 ```groovy
 implementation 'com.github.satoshun.coroutine.autodispose:autodispose:${version}'
 ```
+
 
 ## etc
 
