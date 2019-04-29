@@ -92,7 +92,6 @@ override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 implementation 'com.github.satoshun.coroutine.autodispose:autodispose:${version}'
 ```
 
-
 ## etc
 
 This library referred [uber/AutoDispose](https://github.com/uber/AutoDispose).
