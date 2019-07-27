@@ -9,7 +9,7 @@ import kotlinx.coroutines.Job
 class JobSubject(
   metadata: FailureMetadata?,
   private val actual: Job?
-) : Subject<JobSubject, Job>(metadata, actual) {
+) : Subject(metadata, actual) {
   companion object {
     fun assertThat(job: Job?): JobSubject {
       return Truth.assertAbout(::JobSubject).that(job)
@@ -17,12 +17,14 @@ class JobSubject(
   }
 
   fun isCanceled() {
+    Truth.assertThat(actual).isNotNull()
     if (!actual!!.isCancelled) {
       failWithoutActual(simpleFact("not canceled Job"))
     }
   }
 
   fun isNotCanceled() {
+    Truth.assertThat(actual).isNotNull()
     if (actual!!.isCancelled) {
       failWithoutActual(simpleFact("already canceled Job"))
     }

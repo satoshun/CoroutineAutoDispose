@@ -73,7 +73,7 @@ class ViewTest {
       JobSubject.assertThat(job2).isCanceled()
 
       // same coroutine scope
-      assertThat(view.autoDisposeScope).isSameAs(view.autoDisposeScope)
+      assertThat(view.autoDisposeScope).isSameInstanceAs(view.autoDisposeScope)
 
       it.contentView.removeView(view)
       JobSubject.assertThat(job1).isCanceled()

@@ -4,14 +4,14 @@ const val COMPILE_SDK = 28
 const val MIN_SDK = 14
 const val TARGET_SDK = 28
 
-const val VKOTLIN = "1.3.31"
+const val VKOTLIN = "1.3.41"
 
-const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.4.0"
+const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.4.2"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
 const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.8.0"
 const val JACOCO_PLUGIN = "com.dicedmelon.gradle:jacoco-android:0.1.4"
 
-const val VCOUROUTINE = "1.1.0"
+private const val VCOUROUTINE = "1.2.2"
 const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:$VKOTLIN"
 const val COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VCOUROUTINE"
 const val UI_COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$VCOUROUTINE"
@@ -32,7 +32,7 @@ const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:2.0.0"
 const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:2.0.0"
 
 const val JUNIT = "junit:junit:4.12"
-const val TRUTH = "com.google.truth:truth:0.42"
+const val TRUTH = "com.google.truth:truth:1.0"
 const val TEST_RULES = "androidx.test:rules:1.1.1"
 const val TEST_RUNNER = "androidx.test:runner:1.1.1"
 const val TEST_CORE = "androidx.test:core-ktx:1.1.0"
