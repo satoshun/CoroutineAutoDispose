@@ -28,6 +28,7 @@ const val FRAGMENTX = "androidx.fragment:fragment-ktx:1.1.0"
 const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
 const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata:2.0.0"
 const val LIFECYCLE = "androidx.lifecycle:lifecycle-common:2.0.0"
+const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc01"
 const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:2.0.0"
 const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:2.0.0"
 

@@ -19,11 +19,11 @@ class MainView(context: Context) : View(context),
     val job = launch {
       while (true) {
         delay(1000)
-        Log.d("View", "init")
+        Log.d("MainView", "init loop")
       }
     }
     job.invokeOnCompletion {
-      Log.d("View", "init job completed")
+      Log.d("MainView", "init completed")
     }
   }
 }
