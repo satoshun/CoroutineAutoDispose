@@ -12,35 +12,32 @@ Coroutine AutoDispose is an Kotlin Coroutine library for automatically disposal.
 Often, Coroutine subscriptions need to stop in response to some event (like a Activity#onStop()).
 In order to support this common scenario in Coroutine.
 
-### LifecycleAutoDisposeInterceptor(Lifecycle)
+### autoDisposeScope
 
-LifecycleAutoDisposeInterceptor can use with [CoroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/).
-It create a CoroutineInterceptor for automatically disposal with AAC lifecycle events.
+This library provide a autoDisposeScope extension method.
+It can be used like a [lifecycleScope](https://developer.android.com/reference/kotlin/androidx/lifecycle/package-summary#(androidx.lifecycle.LifecycleOwner).lifecycleScope:androidx.lifecycle.LifecycleCoroutineScope).
+
+It create a [CoroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/) for automatically disposal with Android Architecture Component Lifecycle events.
 
 ```kotlin
-abstract class BaseActivity : AppCompatActivity(),
-  CoroutineScope {
-
-  override val coroutineContext get() = Dispatchers.Main +
-      LifecycleAutoDisposeInterceptor(this) // or autoDisposeInterceptor()
-}
-
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     // automatically dispose when onDestroy
-    launch {
+    autoDisposeScope.launch {
       ...
     }
   }
 
   override fun onResume() {
     // automatically dispose when onPause
-    launch {
+    autoDisposeScope.launch {
       ...
     }
   }
 }
 ```
+
+It can also be uses with Fragment and View.
 
 ### Lifecycle.autoDispose(Job)
 
@@ -49,29 +46,6 @@ This Job an automatically disposal with Android Lifecycle events.
 ```kotlin
 val job = launch { ... }
 lifecycle.autoDispose(job)
-```
-
-### ViewAutoDisposeInterceptor(Lifecycle)
-
-ViewAutoDisposeInterceptor can use with [CoroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/).
-It create a CoroutineInterceptor for automatically disposal with View attach/detach events.
-
-```kotlin
-class MainView(context: Context) : View(context), CoroutineScope {
-  override val coroutineContext
-    get() = Dispatchers.Main +
-      ViewAutoDisposeInterceptor(this) // or autoDisposeInterceptor()
-  ...
-}
-```
-
-It can also be used from extension functions
-
-```kotlin
-val view = ...
-view.autoDisposeScope.launch {
-  ...
-}
 ```
 
 ### Use with RecyclerView
