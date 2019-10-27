@@ -17,14 +17,14 @@ class MainActivity : BaseActivity() {
     setContentView(R.layout.main_act)
 
     // auto dispose when onDestroy
-    val childJob = launch {
+    val childJob = autoDisposeScope.launch {
       while (true) {
         delay(1000)
-        Log.d("activity", "onCreate")
+        Log.d("MainActivity", "onCreate loop")
       }
     }
     childJob.invokeOnCompletion {
-      Log.d("activity", "onCreate job completed")
+      Log.d("MainActivity", "onCreate completed")
     }
 
     supportFragmentManager.commit {
@@ -41,14 +41,14 @@ class MainActivity : BaseActivity() {
   override fun onResume() {
     super.onResume()
     // auto dispose when onPause
-    val childJob = launch {
+    val childJob = autoDisposeScope.launch {
       while (true) {
-        delay(1000)
-        Log.d("activity", "onResume")
+        delay(3000)
+        Log.d("MainActivity", "onResume loop")
       }
     }
     childJob.invokeOnCompletion {
-      Log.d("activity", "onResume job completed")
+      Log.d("MainActivity", "onResume completed")
     }
   }
 }

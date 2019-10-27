@@ -18,28 +18,28 @@ class MainFragment : BaseFragment() {
     super.onViewCreated(view, savedInstanceState)
 
     // auto release when onDestroyView
-    val job = launch {
+    val job = autoDisposeScope.launch {
       while (true) {
-        delay(1000)
-        Log.d("fragment", "start onViewCreated")
+        delay(3000)
+        Log.d("MainFragment", "onViewCreated loop")
       }
     }
     job.invokeOnCompletion {
-      Log.d("fragment", "onViewCreated Job completed")
+      Log.d("MainFragment", "onViewCreated completed")
     }
   }
 
   override fun onResume() {
     super.onResume()
     // auto release when onPause
-    val job = launch {
+    val job = autoDisposeScope.launch {
       while (true) {
-        delay(1000)
-        Log.d("fragment", "start onResume")
+        delay(3000)
+        Log.d("MainFragment", "onResume loop")
       }
     }
     job.invokeOnCompletion {
-      Log.d("fragment", "onResume Job completed")
+      Log.d("MainFragment", "onResume completed")
     }
   }
 }

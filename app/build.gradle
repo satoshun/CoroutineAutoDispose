@@ -40,7 +40,7 @@ android {
 
 dependencies {
   implementation project(':autodispose')
-//  implementation 'com.github.satoshun.coroutine.autodispose:autodispose:0.2.0-SNAPSHOT'
+//  implementation 'com.github.satoshun.coroutine.autodispose:autodispose:0.2.0'
 
   implementation KOTLIN
 
@@ -52,7 +52,8 @@ dependencies {
   implementation ACTIVITYX
   implementation FRAGMENTX
 
+  implementation LIFECYCLE_RUNTIME
+
   implementation COROUTINE
   implementation UI_COROUTINE
-
 }
