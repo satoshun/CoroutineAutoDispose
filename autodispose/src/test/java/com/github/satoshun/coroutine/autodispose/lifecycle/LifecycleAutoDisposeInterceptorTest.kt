@@ -14,11 +14,11 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LifecycleAutoDisposeInterceptorTest {
-  @get:Rule val scenarioRule = ActivityScenarioRule(TestActivity::class.java)
+  @get:Rule val activity = ActivityScenarioRule(TestActivity::class.java)
 
   @Test
   fun lifecycleAutoDisposeInterceptor_onCreated() {
-    val scenario = scenarioRule.scenario
+    val scenario = activity.scenario
 
     scenario.moveToState(Lifecycle.State.CREATED)
     var job: Job? = null
@@ -40,7 +40,7 @@ class LifecycleAutoDisposeInterceptorTest {
 
   @Test
   fun lifecycleAutoDisposeInterceptor_onResumed() {
-    val scenario = scenarioRule.scenario
+    val scenario = activity.scenario
 
     scenario.moveToState(Lifecycle.State.RESUMED)
     var job: Job? = null
@@ -59,7 +59,7 @@ class LifecycleAutoDisposeInterceptorTest {
 
   @Test
   fun lifecycleAutoDisposeInterceptor_nested() {
-    val scenario = scenarioRule.scenario
+    val scenario = activity.scenario
 
     scenario.moveToState(Lifecycle.State.CREATED)
     var parentJob: Job? = null

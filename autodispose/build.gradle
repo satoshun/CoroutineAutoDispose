@@ -31,6 +31,7 @@ dependencies {
 
   api COROUTINE
   api LIFECYCLE
+  api LIFECYCLE_RUNTIME
 
   testImplementation JUNIT
   testImplementation TRUTH

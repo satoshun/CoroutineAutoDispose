@@ -3,5 +3,6 @@
 
   <application>
     <activity android:name=".lifecycle.TestActivity" />
+    <activity android:name=".lifecycle.AutoDisposeScopeTestActivity" />
   </application>
 </manifest>
