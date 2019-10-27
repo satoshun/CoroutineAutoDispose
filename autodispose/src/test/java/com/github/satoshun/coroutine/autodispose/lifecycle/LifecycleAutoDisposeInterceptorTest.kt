@@ -1,12 +1,9 @@
 package com.github.satoshun.coroutine.autodispose.lifecycle
 
-import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleRegistry
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
@@ -14,7 +11,6 @@ import kotlinx.coroutines.launch
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.coroutines.CoroutineContext
 
 @RunWith(AndroidJUnit4::class)
 class LifecycleAutoDisposeInterceptorTest {
@@ -99,9 +95,4 @@ class LifecycleAutoDisposeInterceptorTest {
     JobSubject.assertThat(nestedJob1).isCanceled()
     JobSubject.assertThat(nestedJob2).isCanceled()
   }
-}
-
-class TestActivity : ComponentActivity(), CoroutineScope {
-  override val coroutineContext: CoroutineContext
-    get() = Dispatchers.Main + autoDisposeInterceptor()
 }

@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.github.satoshun.coroutine.autodispose">
+
+  <application>
+    <activity android:name=".lifecycle.TestActivity" />
+  </application>
+</manifest>
