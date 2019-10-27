@@ -3,13 +3,9 @@ package com.github.satoshun.coroutine.autodispose.sample
 import android.content.Context
 import android.util.Log
 import android.view.View
-import androidx.activity.ComponentActivity
-import androidx.lifecycle.lifecycleScope
-import com.github.satoshun.coroutine.autodispose.view.autoDisposeInterceptor
-import kotlinx.coroutines.CoroutineScope
+import com.github.satoshun.coroutine.autodispose.view.autoDisposeScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
 
 class MainView(context: Context) : View(context) {
   init {
@@ -24,6 +20,3 @@ class MainView(context: Context) : View(context) {
     }
   }
 }
-
-val View.autoDisposeScope: CoroutineScope
-  get() = (context as ComponentActivity).lifecycleScope + autoDisposeInterceptor()
