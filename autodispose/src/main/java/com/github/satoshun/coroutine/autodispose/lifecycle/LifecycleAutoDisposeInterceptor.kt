@@ -2,7 +2,10 @@ package com.github.satoshun.coroutine.autodispose.lifecycle
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.plus
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.ContinuationInterceptor
 import kotlin.coroutines.CoroutineContext
@@ -10,7 +13,6 @@ import kotlin.coroutines.CoroutineContext
 /**
  * Create a [ContinuationInterceptor] that follows lifecycle of LifecycleOwner.
  */
-@Suppress("FunctionName")
 fun LifecycleOwner.autoDisposeInterceptor(): ContinuationInterceptor =
   LifecycleAutoDisposeInterceptor(this)
 
@@ -24,7 +26,6 @@ fun LifecycleAutoDisposeInterceptor(lifecycleOwner: LifecycleOwner): Continuatio
 /**
  * Create a [ContinuationInterceptor] that follows lifecycle.
  */
-@Suppress("FunctionName")
 fun Lifecycle.autoDisposeInterceptor(): ContinuationInterceptor =
   LifecycleAutoDisposeInterceptor(this)
 
@@ -34,6 +35,12 @@ fun Lifecycle.autoDisposeInterceptor(): ContinuationInterceptor =
 @Suppress("FunctionName")
 fun LifecycleAutoDisposeInterceptor(lifecycle: Lifecycle): ContinuationInterceptor =
   LifecycleAutoDisposeInterceptorImpl(lifecycle)
+
+/**
+ * * Create a [CoroutineScope] from [androidx.lifecycle.lifecycleScope] that follows lifecycle.
+ */
+val LifecycleOwner.autoDisposeScope: CoroutineScope
+  get() = lifecycleScope + LifecycleAutoDisposeInterceptor(this)
 
 private class LifecycleAutoDisposeInterceptorImpl(
   private val lifecycle: Lifecycle

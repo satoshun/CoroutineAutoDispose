@@ -9,3 +9,5 @@ class TestActivity : ComponentActivity(), CoroutineScope {
   override val coroutineContext: CoroutineContext
     get() = Dispatchers.Main + autoDisposeInterceptor()
 }
+
+class AutoDisposeScopeTestActivity : ComponentActivity()

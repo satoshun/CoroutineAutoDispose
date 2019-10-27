@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.github.satoshun.coroutine.autodispose.lifecycle.autoDisposeScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MainFragment : BaseFragment() {
+class MainFragment : Fragment() {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return TextView(context)
   }
