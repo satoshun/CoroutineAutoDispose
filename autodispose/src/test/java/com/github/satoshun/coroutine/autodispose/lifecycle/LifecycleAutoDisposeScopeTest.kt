@@ -16,7 +16,7 @@ class LifecycleAutoDisposeScopeTest {
   @get:Rule val activity = ActivityScenarioRule(AutoDisposeScopeTestActivity::class.java)
 
   @Test
-  fun autoDisposeScope_Created_to_Destory() {
+  fun autoDisposeScope_Created_to_Destroy() {
     val scenario = activity.scenario
 
     scenario.moveToState(Lifecycle.State.CREATED)
