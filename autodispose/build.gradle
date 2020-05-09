@@ -2,7 +2,6 @@ import static dependencies.DependenciesKt.*
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'org.jetbrains.dokka-android'
 apply plugin: "com.vanniktech.maven.publish"
 
 android {
