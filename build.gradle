@@ -10,9 +10,6 @@ buildscript {
     classpath ANDROID_PLUGIN
     classpath KOTLIN_PLUGIN
     classpath PUBLISH_PLUGIN
-    classpath(JACOCO_PLUGIN) {
-      exclude group: 'org.codehaus.groovy', module: 'groovy-all'
-    }
   }
 }
 

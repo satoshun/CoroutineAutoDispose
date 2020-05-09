@@ -5,18 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka-android'
 apply plugin: "com.vanniktech.maven.publish"
 
-apply plugin: 'jacoco-android'
-apply from: rootProject.file('gradle/jacoco.gradle')
-
 android {
   compileSdkVersion COMPILE_SDK
 
   defaultConfig {
     minSdkVersion MIN_SDK
-  }
-
-  testOptions.unitTests.all {
-    jacoco.includeNoLocationClasses = true
   }
 
   buildTypes {
