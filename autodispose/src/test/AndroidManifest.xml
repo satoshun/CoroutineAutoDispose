@@ -1,8 +1,14 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.github.satoshun.coroutine.autodispose">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.satoshun.coroutine.autodispose">
 
-  <application>
-    <activity android:name=".lifecycle.TestActivity" />
-    <activity android:name=".lifecycle.AutoDisposeScopeTestActivity" />
-  </application>
+    <application android:name="com.github.satoshun.coroutine.autodispose.lifecycle.AppStub">
+        <activity android:name="com.github.satoshun.coroutine.autodispose.lifecycle.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.github.satoshun.coroutine.autodispose.lifecycle.AutoDisposeScopeTestActivity" />
+    </application>
 </manifest>
