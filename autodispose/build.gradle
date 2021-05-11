@@ -2,7 +2,6 @@ import static dependencies.DependenciesKt.*
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: "com.vanniktech.maven.publish"
 
 android {
   compileSdkVersion COMPILE_SDK
@@ -20,6 +19,35 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+
+  // region test options
+
+  testOptions {
+    execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    // for Robolectric
+    // http://robolectric.org/migrating/#migrating-to-40
+    unitTests {
+      includeAndroidResources = true
+      returnDefaultValues = true
+    }
+    // for jacoco and Sonarqube showing coverage
+    unitTests.all {
+      jacoco {
+        includeNoLocationClasses = true
+        excludes = ['jdk.internal.*']
+      }
+      jvmArgs '-noverify'
+      testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+      }
+      ignoreFailures = true
+    }
+  }
+
+  // endregion
+
 }
 
 dependencies {

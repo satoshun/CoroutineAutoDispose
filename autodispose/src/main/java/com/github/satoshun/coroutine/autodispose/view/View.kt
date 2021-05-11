@@ -15,20 +15,20 @@ private val TAG = R.id.autodispose_view_tag
  * This scope will be canceled when View is detached.
  */
 val View.autoDisposeScope: CoroutineScope
-  get() {
-    val exist = getTag(TAG) as? CoroutineScope
-    if (exist != null) {
-      return exist
+    get() {
+        val exist = getTag(TAG) as? CoroutineScope
+        if (exist != null) {
+            return exist
+        }
+        val newScope = ViewCoroutineScope(
+            SupervisorJob() +
+                    Dispatchers.Main +
+                    autoDisposeInterceptor()
+        )
+        setTag(TAG, newScope)
+        return newScope
     }
-    val newScope = ViewCoroutineScope(
-      SupervisorJob() +
-        Dispatchers.Main +
-        autoDisposeInterceptor()
-    )
-    setTag(TAG, newScope)
-    return newScope
-  }
 
 internal class ViewCoroutineScope(
-  override val coroutineContext: CoroutineContext
+    override val coroutineContext: CoroutineContext
 ) : CoroutineScope
