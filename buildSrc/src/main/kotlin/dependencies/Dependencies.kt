@@ -15,8 +15,9 @@ const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:$VKOTLIN"
 const val COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VCOUROUTINE"
 const val UI_COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$VCOUROUTINE"
 
-const val LIFECYCLE = "androidx.lifecycle:lifecycle-common:2.2.0"
-const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+private const val VLIFECYCLE = "2.3.1"
+const val LIFECYCLE = "androidx.lifecycle:lifecycle-common:$VLIFECYCLE"
+const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:$VLIFECYCLE"
 
 // use from sample
 const val APPCOMPAT = "androidx.appcompat:appcompat:1.1.0"
