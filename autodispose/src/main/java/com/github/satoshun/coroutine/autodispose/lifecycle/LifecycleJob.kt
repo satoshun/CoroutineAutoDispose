@@ -4,16 +4,20 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.coroutineScope
 import kotlinx.coroutines.CompletionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * [Job] is automatically disposed and follows the lifecycle of LifecycleOwner.
  *
  * @throws LifecycleFinishedException when lifecycle of LifecycleOwner is destroy
  */
-fun LifecycleOwner.autoDispose(job: Job) {
-  lifecycle.autoDispose(job)
+fun LifecycleOwner.autoDispose(job: Job): LifecycleObserver {
+  return lifecycle.autoDispose(job)
 }
 
 /**
@@ -21,9 +25,8 @@ fun LifecycleOwner.autoDispose(job: Job) {
  *
  * @throws LifecycleFinishedException when lifecycle is destroy
  */
-fun Lifecycle.autoDispose(job: Job) {
-  val state = this.currentState
-  val event = when (state) {
+fun Lifecycle.autoDispose(job: Job): LifecycleObserver {
+  val event = when (this.currentState) {
     Lifecycle.State.INITIALIZED -> Lifecycle.Event.ON_DESTROY
     Lifecycle.State.CREATED -> Lifecycle.Event.ON_DESTROY
     Lifecycle.State.STARTED -> Lifecycle.Event.ON_STOP
@@ -33,6 +36,7 @@ fun Lifecycle.autoDispose(job: Job) {
   val observer = LifecycleJobObserver(job, event, this)
   this.addObserver(observer)
   job.invokeOnCompletion(observer)
+  return observer
 }
 
 private class LifecycleJobObserver(
@@ -49,6 +53,10 @@ private class LifecycleJobObserver(
   }
 
   override fun invoke(cause: Throwable?) {
-    lifecycle.removeObserver(this)
+    lifecycle.coroutineScope.launch {
+      withContext(Dispatchers.Main.immediate) {
+        lifecycle.removeObserver(this@LifecycleJobObserver)
+      }
+    }
   }
 }

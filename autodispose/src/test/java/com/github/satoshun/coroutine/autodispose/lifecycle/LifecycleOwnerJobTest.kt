@@ -1,6 +1,5 @@
 package com.github.satoshun.coroutine.autodispose.lifecycle
 
-import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleRegistry
@@ -18,7 +17,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LifecycleOwnerJobTest {
-  @get:Rule val scenarioRule = ActivityScenarioRule(ComponentActivity::class.java)
+  @get:Rule val scenarioRule = ActivityScenarioRule(TestActivity::class.java)
 
   @Test
   fun addJob_onCreated() {
@@ -88,21 +87,20 @@ class LifecycleOwnerJobTest {
 
     val scenario = scenarioRule.scenario
     scenario.moveToState(Lifecycle.State.CREATED)
-    var fixedObserverSize = 0
-    scenario.onActivity {
-      fixedObserverSize = (it.lifecycle as LifecycleRegistry).observerCount
-    }
 
-    scenario.onActivity { it.autoDispose(job) }
-    scenario.onActivity {
-      assertThat((it.lifecycle as LifecycleRegistry).observerCount)
-        .isEqualTo(1 + fixedObserverSize)
-    }
+    var observer: LifecycleObserver? = null
+    scenario.onActivity { observer = it.autoDispose(job) }
 
     runBlocking { job.cancelAndJoin() }
+
     scenario.onActivity {
+      val count = (it.lifecycle as LifecycleRegistry).observerCount
+
+      // already removed when job canceled(completed)
+      it.lifecycle.removeObserver(observer!!)
+
       assertThat((it.lifecycle as LifecycleRegistry).observerCount)
-        .isEqualTo(0 + fixedObserverSize)
+        .isEqualTo(count)
     }
   }
 }
