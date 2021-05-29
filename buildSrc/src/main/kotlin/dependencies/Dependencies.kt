@@ -6,9 +6,9 @@ const val TARGET_SDK = 29
 
 const val VKOTLIN = "1.3.72"
 
-const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.6.3"
+const val ANDROID_PLUGIN = "com.android.tools.build:gradle:4.2.1"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
-const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.11.1"
+const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.15.1"
 
 private const val VCOUROUTINE = "1.3.6"
 const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:$VKOTLIN"
